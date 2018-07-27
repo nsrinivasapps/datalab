@@ -80,9 +80,6 @@ RUN mkdir /app                                                                  
     apt-get -y update                                                                                    ; \
     apt-get -y install r-base                                                                            ; \
     apt-get -y install libcurl4-openssl-dev libssl-dev                                                   ; \
-    R -e 'install.packages("devtools")'                                                                  ; \
-    R -e 'devtools::install_github("IRkernel/IRkernel")'                                                 ; \
-    R -e 'IRkernel::installspec()'                                                                       ; \
     apt-get -y update                                                                                    ; \
     apt-get -y install nodejs                                                                            ; \
     apt-get -y install ca-certificates                                                                   ; \
@@ -137,6 +134,9 @@ RUN mkdir /app                                                                  
     jupyter    nbextension           enable --py widgetsnbextension                                      ; \
     jupyter    serverextension       enable --py jupyterlab                                              ; \
     pip3       install jupyterlab                                                                        ; \
+    R -e 'install.packages("devtools")'                                                                  ; \
+    R -e 'devtools::install_github("IRkernel/IRkernel")'                                                 ; \
+    R -e 'IRkernel::installspec()'                                                                       ; \
     tar  -zxvf jdk-8u171-linux-x64.tar.gz                                                                ; \
     rm   -f    jdk-8u171-linux-x64.tar.gz                                                                ; \
     wget https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh                               ; \
